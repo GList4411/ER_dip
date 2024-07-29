@@ -3,17 +3,21 @@ import pandas
 import tkinter
 from tkinter import filedialog
 
-def file_dialog():
+def open_and_read():
     root = tkinter.Tk() #create root window
     root.withdraw()
 
     #open file dialog and get path from user
     file_path = filedialog.askopenfilename(
-        title="Select an Excel file", 
-        filetype=[("Excel files", "*.xlsx *.xls")])
+        title="Select an Excel file", #window title
+        filetype=[("Excel files", "*.xlsx *.xls")]) #filters shown files
     
-    return file_path
+    #read excel file using "openpyxl"
+    data_frame = pandas.read_excel(file_path, engine="openpyxl")
+    print(data_frame)
+    return data_frame
     
 
-file_dialog()
+open_and_read()
+
 
